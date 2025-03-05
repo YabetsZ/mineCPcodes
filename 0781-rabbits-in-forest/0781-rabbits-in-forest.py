@@ -4,11 +4,11 @@ class Solution:
         cur = ans[0]
         count = ans[0] + 1
         result = ans[0] + 1
-        for i in range(len(ans)):
-            if count > 0 and ans[i] == cur:
+        for num in ans:
+            if count > 0 and num == cur:
                 count -= 1
             else:
-                cur = ans[i]
-                count = ans[i]
-                result += ans[i] + 1
+                cur = num
+                count = num
+                result += num + 1
         return result
