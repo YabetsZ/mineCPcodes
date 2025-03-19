@@ -21,6 +21,6 @@ class Solution:
                 comb(i+1, end, arr)
                 arr.pop()
             
-        # tryAll(1, [])
-        comb(1, n, [])
+        tryAll(1, [])
+        # comb(1, n, []) # costs you space complexity
         return sol
