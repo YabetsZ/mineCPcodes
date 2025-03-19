@@ -11,5 +11,16 @@ class Solution:
             tryAll(cur+1, arr)
             arr.pop()
             tryAll(cur+1, arr)
-        tryAll(1, [])
+        def comb(start, end, arr):
+            if len(arr) == k:
+                sol.append(arr[:])
+                return
+            
+            for i in range(start, end+1):
+                arr.append(i)
+                comb(i+1, end, arr)
+                arr.pop()
+            
+        # tryAll(1, [])
+        comb(1, n, [])
         return sol
