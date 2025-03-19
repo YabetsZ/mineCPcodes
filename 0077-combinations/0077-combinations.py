@@ -8,7 +8,7 @@ class Solution:
             elif cur > n:
                 return
             arr.append(cur)
-            tryAll(cur+1, arr,)
+            tryAll(cur+1, arr)
             arr.pop()
             tryAll(cur+1, arr)
         tryAll(1, [])
