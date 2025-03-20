@@ -6,7 +6,7 @@ class Solution:
                 return min(minOfMax, max(child))
             if max(child) >= minOfMax:
                 return minOfMax
-            for idx, cur in enumerate(child):
+            for idx in range(k):
                 child[idx] += cookies[i]
                 minOfMax = backtrack(i+1, minOfMax)
                 child[idx] -= cookies[i]
