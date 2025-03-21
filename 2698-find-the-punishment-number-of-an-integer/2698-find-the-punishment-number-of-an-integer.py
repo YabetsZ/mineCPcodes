@@ -3,11 +3,13 @@ class Solution:
         def check_for_i(i, sqri, summed):
             if sqri == 0 and summed == i:
                 return True
-            elif sqri == 0 or summed > i:
+            elif sqri == 0:
                 return False
-            for p in range(len(str(sqri))):
+            for p in range(len(str(sqri)) -1, -1, -1):
                 chopped = sqri//10**p
-                summed +=  chopped 
+                summed +=  chopped
+                if summed > i:
+                    return False
                 if check_for_i(i, sqri%10**p, summed):
                     return True
                 summed -= chopped
