@@ -3,7 +3,7 @@ class Solution:
         def check_for_i(i, sqri, summed):
             if sqri == 0 and summed == i:
                 return True
-            elif sqri == 0:
+            elif sqri == 0 or summed > i:
                 return False
             
             for p in range(len(str(sqri))):
