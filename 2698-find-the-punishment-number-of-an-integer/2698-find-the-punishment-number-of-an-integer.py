@@ -5,14 +5,9 @@ class Solution:
                 return True
             elif sqri == 0:
                 return False
-            
-            for p in range(len(str(sqri)) - 1, -1, -1):
+            for p in range(len(str(sqri))):
                 chopped = sqri//10**p
                 summed +=  chopped 
-
-                if summed > i:
-                    return False
-
                 if check_for_i(i, sqri%10**p, summed):
                     return True
                 summed -= chopped
@@ -20,6 +15,6 @@ class Solution:
         result = 0
         for i in range(1, n+1):
             if check_for_i(i, i**2, 0):
-                print(i**2)
+                # print(i**2)
                 result += i**2
         return result
