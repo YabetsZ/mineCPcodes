@@ -8,8 +8,8 @@ class Solution:
             for p in range(len(str(sqri)) -1, -1, -1):
                 chopped = sqri//10**p
                 summed +=  chopped
-                if summed > i:
-                    return False
+                # if summed > i:
+                #     return False
                 if check_for_i(i, sqri%10**p, summed):
                     return True
                 summed -= chopped
