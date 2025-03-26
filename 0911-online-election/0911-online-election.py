@@ -14,7 +14,7 @@ class TopVotedCandidate:
         
 
     def binarySearch(self, target: int) -> int:
-        left, right = 0, len(self.times)
+        left, right = 0, len(self.times)-1
         while left < right:
             mid = left + (right - left)//2 + 1
 
