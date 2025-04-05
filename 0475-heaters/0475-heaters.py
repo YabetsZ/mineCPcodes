@@ -1,7 +1,7 @@
 class Solution:
     def findRadius(self, houses: List[int], heaters: List[int]) -> int:
-        # houses.sort()
-        # heaters.sort()
+        houses.sort()
+        heaters.sort()
         def verify(radius):
             i = 0
             for heat in heaters:
