@@ -1,25 +1,27 @@
 class Solution:
     def checkIfPrerequisite(self, n: int, prereq: List[List[int]], queries: List[List[int]]) -> List[bool]:
         graph = [[] for _ in range(n)]
-        queue = deque()
-        isDecendant = [[0] * n for _ in range(n)]
+        isDecendant = [set() for _ in range(n)]
+        inDegree = [0] * n
         for i in range(len(prereq)):
             u, v = prereq[i]
             graph[u].append(v)
-        def bfs(node):
-            queue = deque([node])
-            while queue:
-                for i in range(len(queue)):
-                    course = queue.popleft()
-                    if course != node:
-                        isDecendant[node][course] = 1
-                    for nekst in graph[course]:
-                        queue.append(nekst)
+            inDegree[v] += 1
+        def dfs(node):
+            if len(isDecendant[node]) != 0:
+                return set([node]).union(isDecendant[node])
+            decendant = set()
+            for neigh in graph[node]:
+                decendant.update(dfs(neigh))
+            isDecendant[node] = decendant.copy()
+            decendant.add(node)
+            return decendant
         for i in range(n):
-            bfs(i)
+            if inDegree[i] == 0:
+                dfs(i)
         result = []
         for u, v in queries:
-            if isDecendant[u][v] == 1:
+            if v in isDecendant[u]:
                 result.append(True)
             else:
                 result.append(False)
