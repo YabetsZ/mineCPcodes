@@ -6,7 +6,7 @@ class Solution:
             if u not in bestAnswer:
                 bestAnswer[u] = 0
             for v, w in graph[u]:
-                if (u, v) not in visitedEdges:
+                if (u, v) not in visitedEdges or bestAnswer[u] + w < bestAnswer[v] :
                     visitedEdges.add((u, v))
                     bestAnswer[v] = min(bestAnswer[u] + w, bestAnswer.get(v, float("inf")))
                     dfs(v)
