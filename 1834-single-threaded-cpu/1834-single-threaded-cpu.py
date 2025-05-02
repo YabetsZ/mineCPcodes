@@ -20,6 +20,7 @@ class Solution:
             result.append(i)
             if not heap and tasks:
                 heappush(heap, tasks.pop())
-        
+                while tasks and heap[0][2] == tasks[-1][2]:
+                    heappush(heap, tasks.pop())
         return result
           
