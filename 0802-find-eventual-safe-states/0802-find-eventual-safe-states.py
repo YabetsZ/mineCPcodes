@@ -1,6 +1,5 @@
 class Solution:
     def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
-        # I don't know which one to use khan's or dfs. let's go with dfs
         # WHITE, GRAY, BLACK = 0, 1, 2
         Colors = [0] * len(graph)
         ans = []
