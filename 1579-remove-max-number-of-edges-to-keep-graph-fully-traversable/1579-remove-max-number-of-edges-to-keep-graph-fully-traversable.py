@@ -28,14 +28,9 @@ class UnionFind:
 
 class Solution:
     def maxNumEdgesToRemove(self, n: int, edges: List[List[int]]) -> int:
-        def process(person, u, v):
-            if not person.connected(u, v):
-                person.union(u, v)
-            else:
-                self.remove_count += 1
         alice, bob = UnionFind(n), UnionFind(n)
         alice_path, bob_path = [],[]
-        self.remove_count = 0
+        remove_count = 0
         for t, u, v in edges:
             if t == 2:
                 bob_path.append((u, v))
@@ -46,17 +41,21 @@ class Solution:
                     alice.union(u, v)
                     bob.union(u, v)
                 else:
-                    self.remove_count += 1
-
+                    remove_count += 1
         while alice_path or bob_path:
             if alice_path:
                 u, v = alice_path.pop()
-                process(alice, u, v)
+                if not alice.connected(u, v):
+                    alice.union(u, v)
+                else:
+                    remove_count += 1
             if bob_path:
                 u, v = bob_path.pop()
-                process(bob, u, v)
-                
+                if not bob.connected(u, v):
+                    bob.union(u, v)
+                else:
+                    remove_count += 1
         if bob.components != 1 or alice.components != 1:
             return -1
-        return self.remove_count
+        return remove_count
             
