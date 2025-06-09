@@ -46,7 +46,7 @@ class Solution:
                     alice.union(u, v)
                     bob.union(u, v)
                 else:
-                    self.remove.count += 1
+                    self.remove_count += 1
 
         while alice_path or bob_path:
             if alice_path:
