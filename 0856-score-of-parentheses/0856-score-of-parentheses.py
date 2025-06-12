@@ -1,20 +1,10 @@
 class Solution:
     def scoreOfParentheses(self, s: str) -> int:
-        stack = []
-        ans = 0
-        for sign in s:
-            if sign == "(":
-                if stack:
-                    stack[-1] = 2
-                    stack.append(1)
-                else:
-                    stack.append(1)
+        stack = [0]
+        for char in s:
+            if char == '(':
+                stack.append(0)
             else:
-                if stack.pop() == 1:
-                    ans += 1
-                else:
-                    ans *= 2
-        return ans
-
-
-                
+                score = stack.pop()
+                stack[-1] += max(score * 2, 1)
+        return stack[0]
