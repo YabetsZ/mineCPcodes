@@ -35,4 +35,4 @@ class Solution:
             result += min(bit.query(nums[i]-1), bit.range_query(nums[i]+1, 10**5))
             bit.update(nums[i], 1)
         
-        return result
+        return result%(10**9 + 7)
