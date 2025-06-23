@@ -17,10 +17,10 @@ class Solution:
         
         result, self.reverse = [], True
 
-        for j in range(n):
+        for j in range(m): # horizontal
             traverse(0, j)
             
-        for i in range(1, n):
+        for i in range(1, n): # vertical
             traverse(i, m-1)
 
         return result
