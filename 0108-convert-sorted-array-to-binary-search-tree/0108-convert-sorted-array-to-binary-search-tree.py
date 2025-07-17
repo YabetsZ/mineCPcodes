@@ -7,34 +7,18 @@
 class Solution:
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
 
-        def insert(node, val):
-            print("Here")
-            if not(node.right or node.left):
-                if node.val < val:
-                    node.right = TreeNode(val)
-                else:
-                    node.left = TreeNode(val)
-                return
-
-            if node.val > val:
-                if not node.left:
-                    node.left = TreeNode(val)
-                else:
-                    insert(node.left, val)
-            elif node.val < val:
-                if not node.right:
-                    node.right = TreeNode(val)
-                else:
-                    insert(node.right, val)
-        
-        mid = (len(nums) - 1)//2
-        root = TreeNode(nums[mid])
-        left = mid - 1
-        for right in range(mid+1, len(nums)):
-            insert(root, nums[right])
-            if left >= 0:
-                insert(root, nums[left])
-            left -= 1
-        return root
+        def insert(arr):
+            # print("Here")
+            if not arr:
+                return None
+            elif len(arr) == 1:
+                return TreeNode(arr[0])
+            
+            mid = len(arr)//2
+            node = TreeNode(arr[mid])
+            node.left = insert(arr[:mid])
+            node.right = insert(arr[mid+1:])
+            return node
+        return insert(nums)
 
             
