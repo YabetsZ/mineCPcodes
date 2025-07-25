@@ -1,8 +1,9 @@
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
-        if len(s) < len(p): return []
+        if len(s) < len(p):
+            return []
         count_p = Counter(p)
-        count_s = Counter(s[:len(p)-1])
+        count_s = Counter(s[: len(p) - 1])
 
         def check():
             for key, val in count_p.items():
@@ -11,10 +12,10 @@ class Solution:
             return True
 
         result = []
-        for right in range(len(p)-1, len(s)):
+        for right in range(len(p) - 1, len(s)):
             count_s[s[right]] += 1
 
-            left = right-len(p)+1
+            left = right - len(p) + 1
             if check():
                 result.append(left)
             count_s[s[left]] -= 1
