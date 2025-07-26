@@ -1,8 +1,10 @@
 class Solution:
-    def fib(self, n: int, lookUp=None) -> int:
-        lookUp = {0:0, 1:1} if lookUp is None else lookUp
-        if n in lookUp:
-            return lookUp[n]
+    def fib(self, n: int) -> int:
+        tab = deque([0, 1])
         
-        lookUp[n] = self.fib(n-1, lookUp) + self.fib(n-2, lookUp)
-        return lookUp[n]
+        for _ in range(2, n+1):
+            cur = tab[0] + tab[-1]
+            tab.popleft()
+            tab.append(cur)
+            
+        return tab[-1]
