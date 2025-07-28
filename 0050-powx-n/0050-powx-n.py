@@ -1,12 +1,11 @@
 class Solution:
     def myPow(self, x: float, n: int) -> float:
-        def exp(x, n):
-            if n == 0:
-                return 1.0
-            half = exp(x, n//2)
-            if n % 2:
-                return half * half * x
-            else:
-                return half * half
-        result = exp(x, abs(n))
-        return result if n >= 0 else 1/result
+        result, reverse = 1, n < 0
+        n = abs(n)
+        while n > 0:
+            if n & 1 > 0:
+                result *= x
+            x *= x
+            n >>= 1
+        
+        return result if not reverse else 1.0/result
