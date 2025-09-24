@@ -1,12 +1,10 @@
 class Solution:
-    def fib(self, n: int) -> int:
-        if n < 2:
-            return n
-
-        tab = [0, 1]
+    def fib(self, n: int, memo=None) -> int:
+        if memo is None:
+            memo = {0: 0, 1: 1}
         
-        for _ in range(2, n+1):
-            tab[0], tab[1] = tab[1], tab[0]
-            tab[1] = tab[0] + tab[-1]
+        if n not in memo:
+            memo[n] = self.fib(n-1, memo) + self.fib(n-2, memo)
+        
+        return memo[n]
 
-        return tab[-1]
