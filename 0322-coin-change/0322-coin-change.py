@@ -1,8 +1,9 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        # ITERATIVE APPROACH
+        # ITERATIVE APPROACH(788ms w/o sorting coins; )
         dp = [float("inf")]*(amount + 1)
         dp[0] = 0 # basecase
+        coins.sort()
         for remainder in range(1, amount+1):
             for coin in coins:
                 if remainder-coin < 0: continue
