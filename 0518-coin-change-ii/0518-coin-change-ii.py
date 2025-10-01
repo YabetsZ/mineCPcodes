@@ -1,15 +1,15 @@
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
-        coins.sort()
-        @cache
-        def dp(i, rem):
-            if rem == 0:
-                return 1
-            if i >= len(coins) or rem < coins[i]:
-                return 0
-
-            take = dp(i, rem-coins[i])
-            not_take = dp(i+1, rem)
-            return take + not_take
+        c = len(coins)
+        dp = [[0]*(amount + 1) for _ in range(c)]
+        dp[0][0] = 1
         
-        return dp(0, amount)
+        for i in range(c):
+            for j in range(amount+1):
+                cur_coin = coins[i]
+                if cur_coin + j <= amount:
+                    dp[i][j+cur_coin] += dp[i][j]
+                if i + 1 < c:
+                    dp[i+1][j] += dp[i][j]
+
+        return dp[-1][-1]
